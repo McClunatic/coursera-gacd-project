@@ -66,7 +66,7 @@ load_y <- function(target) {
 #' Runs the \code{run_analysis} main program
 #'
 #' @return The tidy dataset required by the assignment, as a tibble
-main <- function() {
+create_tidy_dataset <- function() {
 
     # Download the dataset if it hasn't already been downloaded
     if (!file.exists("UCI HAR Dataset")) {
@@ -110,6 +110,8 @@ main <- function() {
     result
 }
 
+
 if (sys.nframe() == 0) {
-    main()
+    result <- create_tidy_dataset()
+    readr::write_csv(result, "tidy.csv")
 }
