@@ -1,1 +1,5 @@
+# Downloaded and decompressed raw data
 UCI HAR Dataset/
+
+# Generated tidy data
+tidy.csv
