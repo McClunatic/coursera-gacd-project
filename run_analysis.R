@@ -1,13 +1,10 @@
 library(tidyverse)
 
-#' Loads a feature dataset as a tibble.
+#' Loads a feature dataset as a tibble
 #'
 #' @param target The target feature dataset, "train" or "test"
 #'
 #' @return The tibble of the feature dataset
-#' @importFrom readr read_delim
-#' @importFrom readr read_fwf
-#' @export
 load_x <- function(target) {
 
     # Specify paths to features list and X_train data
@@ -31,14 +28,11 @@ load_x <- function(target) {
     dset
 }
 
-#' Loads a label dataset as a tibble.
+#' Loads a label dataset as a tibble
 #'
 #' @param target The target label dataset, "train" or "test"
 #'
 #' @return The tibble of the label dataset
-#' @importFrom readr read_delim
-#' @importFrom readr read_fwf
-#' @export
 load_y <- function(target) {
 
     # Specify paths to features list and X_train data
@@ -69,7 +63,9 @@ load_y <- function(target) {
     dplyr::inner_join(dset, labels, "idx")
 }
 
-#' Runs the \code{run_analysis} main program.
+#' Runs the \code{run_analysis} main program
+#'
+#' @return The tidy dataset required by the assignment, as a tibble
 main <- function() {
 
     # Download the dataset if it hasn't already been downloaded
@@ -106,6 +102,12 @@ main <- function() {
     idx <- NULL  # namespace idx to relieve lintr error
     described <- dplyr::bind_cols(meanstd, dplyr::select(y, -idx))
     described
+
+    ## 5. Create dataset with means for each variable per activity and subject
+    activity <- subject <- NULL
+    grouped <- dplyr::group_by(described, activity, subject)
+    result <- dplyr::summarize_all(grouped, mean)
+    result
 }
 
 if (sys.nframe() == 0) {
