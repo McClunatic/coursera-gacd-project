@@ -30,7 +30,16 @@ The dimensions are the dataset are therefore:
 * 180 rows - 6 activities for each of 30 subjects
 * 68 columns - The first two columns indicate the activity and subject for
   the row. The remaining 66 represent the average of each feature over
-  all experiments involving the specified activity and subject.
+  all experiments involving the specified activity and subject. In brief:
+  * `activity` (*factor*) (*character*) one of:
+    * `WALKING`
+    * `WALKING_UPSTAIRS`
+    * `WALKING_DOWNSTAIRS`
+    * `SITTING`
+    * `STANDING`
+    * `LAYING`
+  * `subject` (*factor*) (*integer*) value in range: `[1, 30]`
+  * **Remaining 66** (*variable*) (*numeric*)
 
 Again, for specifics on those features, please consult documentation for the
 raw dataset
